@@ -36,7 +36,6 @@ dependencies {
         exclude("net.fabricmc")
         exclude("net.fabricmc.fabric-api")
     }
-    modApi("org.quiltmc:qsl:${rootProject.property("quilt_standard_library_version")}")
 
     common(project(":common", "namedElements")) {
         isTransitive = false
@@ -50,8 +49,6 @@ dependencies {
     shadowCommon(project(":fabric-like", "transformProductionQuilt")) {
         isTransitive = false
     }
-
-    modApi("org.quiltmc.quilt-kotlin-libraries:quilt-kotlin-libraries:${rootProject.property("quilt_kotlin_libraries_version")}")
 }
 
 tasks.processResources {

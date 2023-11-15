@@ -3,7 +3,7 @@ package org.nullversionnova.musicscript
 import dev.architectury.injectables.annotations.ExpectPlatform
 import java.nio.file.Path
 
-object ExampleExpectPlatform {
+object MusicScriptExpectPlatform {
     /**
      * We can use [Platform.getConfigFolder] but this is just an example of [ExpectPlatform].
      *

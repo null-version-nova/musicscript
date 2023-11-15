@@ -1,10 +1,9 @@
 package org.nullversionnova.musicscript.forge
 
 import dev.architectury.platform.forge.EventBuses
-import org.nullversionnova.musicscript.MusicScript
 import net.minecraftforge.fml.common.Mod
+import org.nullversionnova.musicscript.MusicScript
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
-import thedarkcolour.kotlinforforge.forge.MOD_CONTEXT
 
 @Mod(MusicScript.MOD_ID)
 object MusicScriptForge {

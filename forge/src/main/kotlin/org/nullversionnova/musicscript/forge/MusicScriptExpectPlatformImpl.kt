@@ -5,7 +5,7 @@ import java.nio.file.Path
 
 object MusicScriptExpectPlatformImpl {
     /**
-     * This is our actual method to [ExampleExpectPlatform.getConfigDirectory].
+     * This is our actual method to [MusicScriptExpectPlatform.getConfigDirectory].
      */
     @JvmStatic // Jvm Static is required so that java can access it
     fun getConfigDirectory(): Path {

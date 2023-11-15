@@ -1,30 +1,28 @@
 {
-  "_comment": "https://github.com/QuiltMC/rfcs/blob/main/specification/0002-quilt.mod.json.md",
   "schema_version": 1,
   "mixin": [
     "musicscript.mixins.json",
     "musicscript-common.mixins.json"
   ],
   "quilt_loader": {
-    "metadata": {
-      "name": "nova's music script",
-      "description": "This is an example description! Tell everyone what your mod is about!",
-      "license": "CC0-1.0",
-      "authors": ["null-version_nova"],
-      "contact": {
-        "sources": "https://github.com/architectury/architectury-templates"
-      }
-    },
     "group": "${group}",
     "id": "${mod_id}",
     "version": "${version}",
+    "metadata": {
+      "name": "nova's music script",
+      "description": "This is an example description! Tell everyone what your mod is about!",
+      "contributors": {
+        "null-version_nova": "Owner"
+      },
+      "contact": {
+        "sources": "https://github.com/architectury/architectury-templates"
+      },
+      "icon": "assets/musicscript/icon.png"
+    },
     "intermediate_mappings": "net.fabricmc:intermediary",
     "entrypoints": {
       "init": [
-        {
-          "adapter": "kotlin",
-          "value": "org.nullversionnova.musicscript.quilt.MusicScriptQuilt"
-        }
+        "org.nullversionnova.musicscript.quilt.MusicScriptQuilt"
       ]
     },
     "depends": [
@@ -38,11 +36,11 @@
       },
       {
         "id": "minecraft",
-        "version": ">=${minecraft_version}"
+        "version": ">=1.18.2"
       },
       {
         "id": "architectury",
-        "version": ">=${architectury_version}"
+        "version": ">=4.11.93"
       }
     ]
   },
