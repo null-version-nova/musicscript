@@ -2,29 +2,29 @@
   "schemaVersion": 1,
   "id": "${mod_id}",
   "version": "${version}",
-  "name": "Example Mod",
+  "name": "nova's music script",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "Me!"
+    "null-version_nova"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
-  "license": "Insert License Here",
-  "icon": "assets/examplemod/icon.png",
+  "license": "MIT License",
+  "icon": "assets/musicscript/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
       {
         "adapter": "kotlin",
-        "value": "net.examplemod.fabric.ExampleModFabric"
+        "value": "org.nullversionnova.musicscript.fabric.MusicScriptFabric"
       }
     ]
   },
   "mixins": [
-    "examplemod.mixins.json",
-    "examplemod-common.mixins.json"
+    "musicscript.mixins.json",
+    "musicscript-common.mixins.json"
   ],
   "depends": {
     "fabric": "*",

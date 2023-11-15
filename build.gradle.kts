@@ -49,7 +49,7 @@ allprojects {
     }
 
     dependencies {
-        compileOnly("org.jetbrains.kotlin:kotlin-stdlib")
+        api("org.jetbrains.kotlin:kotlin-stdlib")
     }
 
     tasks.withType<JavaCompile> {

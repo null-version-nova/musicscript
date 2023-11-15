@@ -14,8 +14,8 @@ loom {
         convertAccessWideners.set(true)
         extraAccessWideners.add(loom.accessWidenerPath.get().asFile.name)
 
-        mixinConfig("examplemod-common.mixins.json")
-        mixinConfig("examplemod.mixins.json")
+        mixinConfig("musicscript-common.mixins.json")
+        mixinConfig("musicscript.mixins.json")
     }
 }
 
