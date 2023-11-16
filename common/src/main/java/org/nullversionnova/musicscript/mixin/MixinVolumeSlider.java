@@ -1,5 +1,6 @@
 package org.nullversionnova.musicscript.mixin;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.Options;
 import net.minecraft.sounds.SoundSource;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,9 +14,10 @@ import org.nullversionnova.musicscript.SoundManager;
  * [<a href="https://github.com/SpongePowered/Mixin/issues/245">Github Issue</a>]
  */
 @Mixin(Options.class)
-public class MixinTitleScreen {
+public class MixinVolumeSlider {
     @Inject(at = @At("TAIL"), method = "setSoundCategoryVolume(Lnet/minecraft/sounds/SoundSource;F)V")
     private void setSoundCategoryVolume(SoundSource soundSource, float f, CallbackInfo info) {
-        SoundManager.setGain("otherside.wav",f * 30 - 30);
+        Options options = Minecraft.getInstance().options;
+        SoundManager.setVolume(options.getSoundSourceVolume(SoundSource.MUSIC) * options.getSoundSourceVolume(SoundSource.MASTER));
     }
 }

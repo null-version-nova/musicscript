@@ -14,7 +14,7 @@ object MusicScript {
     val DATA_PATH = "${Platform.getConfigFolder()}/${MOD_ID}"
     fun init() {
         println("CONFIG DIR: ${getConfigDirectory().toAbsolutePath().normalize()}")
-        SoundManager.loadSound("otherside.wav")
+        SoundManager.start("otherside.wav")
     }
 
 
