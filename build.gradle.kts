@@ -46,10 +46,14 @@ allprojects {
         // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
         // See https://docs.gradle.org/current/userguide/declaring_repositories.html
         // for more information about repositories.
+
     }
+
+
 
     dependencies {
         api("org.jetbrains.kotlin:kotlin-stdlib")
+        implementation("org.python:jython-slim:2.7.3")
     }
 
     tasks.withType<JavaCompile> {

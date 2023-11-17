@@ -7,9 +7,9 @@ out/
 .gradle/
 output/
 bin/
-libs/
+forge/lib/
 
-.classpath
+**/.*
 .project
 .idea/
 classes/
