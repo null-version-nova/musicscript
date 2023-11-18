@@ -48,6 +48,7 @@ dependencies {
 
     // Kotlin For Forge
     implementation("thedarkcolour:kotlinforforge:${rootProject.property("kotlin_for_forge_version")}")
+    forgeRuntimeLibrary("org.python:jython-standalone:2.7.3")
 }
 
 tasks.processResources {

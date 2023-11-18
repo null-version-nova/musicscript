@@ -12,5 +12,4 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${rootProject.property("fabric_loader_version")}")
     // Remove the next line if you don't want to depend on the API
     modApi("dev.architectury:architectury:${rootProject.property("architectury_version")}")
-    implementation("org.python:jython-slim:2.7.3")
 }

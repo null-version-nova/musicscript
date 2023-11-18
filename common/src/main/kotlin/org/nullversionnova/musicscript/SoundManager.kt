@@ -35,7 +35,7 @@ object SoundManager {
         return if (sound.contains(':')) {
             playSound(Identifier(sound))
         } else {
-            playSound(File("${MusicScript.MUSIC_PATH}/$sound"))
+            playSound(File("${MusicScript.properties["song_path"]}/$sound"))
         }
     }
     @JvmStatic

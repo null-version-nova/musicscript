@@ -8,11 +8,10 @@ import java.io.File
 
 
 object PythonScriptManager {
-    val SCRIPT_DIRECTORY = MusicScript.DATA_PATH
     fun run(scriptName: String, player: PlayerEntity) {
         val interpreter = PythonInterpreter()
         val script = try {
-            File("$SCRIPT_DIRECTORY/$scriptName").readText()
+            File("${MusicScript.properties["script_path"]}/$scriptName").readText()
         } catch (e: Exception) {
             return
         }

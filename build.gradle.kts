@@ -53,7 +53,7 @@ allprojects {
 
     dependencies {
         api("org.jetbrains.kotlin:kotlin-stdlib")
-        implementation("org.python:jython-slim:2.7.3")
+        implementation("org.python:jython-standalone:2.7.3")
     }
 
     tasks.withType<JavaCompile> {

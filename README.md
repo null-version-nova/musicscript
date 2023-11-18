@@ -40,3 +40,6 @@ Only `.wav` and `.aiff` files are supported right now. I'll work on expanding su
 
 # A word
 This mod is largely untested. I can not guarantee that it will work, but if it does not, please let me know so that I can fix it.
+
+Available only on Fabric and possibly Quilt for now. A Forge port and later Neoforged for newer versions of Minecraft will be in the works.
+Requires Architectury and Fabric Language Kotlin.
