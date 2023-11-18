@@ -1,7 +1,7 @@
 package org.nullversionnova.musicscript
 
-import net.minecraft.client.Minecraft
-import net.minecraft.sounds.SoundSource
+import net.minecraft.client.MinecraftClient
+import net.minecraft.sound.SoundCategory
 import java.io.File
 import javax.sound.sampled.AudioSystem
 import javax.sound.sampled.Clip
@@ -10,9 +10,9 @@ import javax.sound.sampled.FloatControl
 object RawSoundEngine {
     private val loadedSounds = mutableMapOf<File,Clip>()
     private val gains = mutableMapOf<File,FloatControl>()
-    private val MaxGain = 6
+    private val MaxGain = -16
     private val MinGain = -36
-    private var volume = (Minecraft.getInstance().options.getSoundSourceVolume(SoundSource.MUSIC) * Minecraft.getInstance().options.getSoundSourceVolume(SoundSource.MASTER))
+    private var volume = (MinecraftClient.getInstance().options.getSoundVolume(SoundCategory.MUSIC) * MinecraftClient.getInstance().options.getSoundVolume(SoundCategory.MASTER))
     @JvmStatic
     fun start(file: File) : Boolean {
         if (volume <= 0) {
@@ -48,5 +48,21 @@ object RawSoundEngine {
         for (i in loadedSounds.values) {
             i.stop()
         }
+    }
+    fun pause() {
+        for (i in loadedSounds.values) {
+            i.stop()
+        }
+    }
+    fun resume() {
+        for (i in loadedSounds.values) {
+            i.start()
+        }
+    }
+    fun isAnythingPlaying() : Boolean {
+        for (i in loadedSounds.values) {
+            if (i.isOpen) { return true }
+        }
+        return false
     }
 }

@@ -2,17 +2,15 @@
   "schemaVersion": 1,
   "id": "${mod_id}",
   "version": "${version}",
-  "name": "nova's music script",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "nova's Music Script",
+  "description": "Allows the user to play songs in Minecraft controlled by a python script.",
   "authors": [
     "null-version_nova"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/null-version-nova/musicscript"
   },
   "license": "MIT License",
-  "icon": "assets/musicscript/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
