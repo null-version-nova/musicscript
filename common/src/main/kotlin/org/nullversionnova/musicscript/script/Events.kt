@@ -13,26 +13,30 @@ import org.nullversionnova.musicscript.sound.SoundManager
 
 object Events {
     var ticks = 200
-    var isPlayerSubmerged = false
+    private var isPlayerSubmerged = false
     fun init() {
         PlayerEvent.CHANGE_DIMENSION.register { serverPlayerEntity: ServerPlayerEntity, _: RegistryKey<World>, _: RegistryKey<World> ->
-            SoundManager.stopSounds()
-            PythonScriptManager.run("change-dimension.py", serverPlayerEntity)
+            if (MinecraftClient.getInstance().player!!.uuid == serverPlayerEntity.uuid) { // Is this necessary? Who knows.
+                SoundManager.stopSounds()
+                PythonScriptManager.run("change_dimension", serverPlayerEntity)
+            }
         }
         PlayerEvent.PLAYER_RESPAWN.register { serverPlayerEntity: ServerPlayerEntity, b: Boolean ->
-            if (b) {
-                SoundManager.stopSounds()
-                PythonScriptManager.run("change-dimension.py", serverPlayerEntity)
-            } else {
-                PythonScriptManager.run("player-respawn.py", serverPlayerEntity)
+            if (MinecraftClient.getInstance().player!!.uuid == serverPlayerEntity.uuid) {
+                if (b) {
+                    SoundManager.stopSounds()
+                    PythonScriptManager.run("change_dimension", serverPlayerEntity)
+                } else {
+                    PythonScriptManager.run("player_respawn", serverPlayerEntity)
+                }
             }
         }
         ClientTickEvent.CLIENT_POST.register {
-            it.player?.let { it1 -> musicTick(it1) }
+            musicTick(it.player)
             if (it.player != null) {
                 if (isPlayerSubmerged != it.player!!.isSubmergedInWater) {
                     isPlayerSubmerged = it.player!!.isSubmergedInWater
-                    PythonScriptManager.run("water-submersion.py", it.player!!)
+                    PythonScriptManager.run("water_submersion", it.player!!)
                 }
             }
 
@@ -48,9 +52,9 @@ object Events {
     fun playSong(player: ClientPlayerEntity) {
         if (ticks == 0) {
             ticks = 2000
-            PythonScriptManager.run("play-song.py", player)
-        } else if (!SoundManager.isAnythingPlaying()) {
-            ticks--
+            PythonScriptManager.run("play_song", player)
+        } else if (!SoundManager.isPaused()) {
+            decrement()
         }
     }
     fun playCredits() {
@@ -71,14 +75,20 @@ object Events {
             ticks--
         }
     }
-    fun musicTick(player: ClientPlayerEntity) {
+    fun musicTick(player: ClientPlayerEntity?) {
         val music = MinecraftClient.getInstance().musicType
-        if (music == MusicType.CREDITS) {
-            playCredits()
-        } else if (music == MusicType.MENU) {
-            playMenu()
-        } else {
-            playSong(player)
+        when (music) {
+            MusicType.CREDITS -> {
+                playCredits()
+            }
+            MusicType.MENU -> {
+                playMenu()
+            }
+            else -> {
+                if (player != null) {
+                    playSong(player)
+                }
+            }
         }
     }
 }

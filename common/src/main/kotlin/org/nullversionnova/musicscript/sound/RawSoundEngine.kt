@@ -43,14 +43,14 @@ object RawSoundEngine {
         }
     }
     @JvmStatic
-    fun stop(sound: File) {
+    fun stopSound(sound: File) {
         loadedSounds[sound]?.close()
         loadedSounds.remove(sound)
     }
     @JvmStatic
-    fun stopAll() {
-        for (i in loadedSounds.values) {
-            i.stop()
+    fun stopSounds() {
+        for (i in loadedSounds.keys) {
+            stopSound(i)
         }
     }
     fun pause() {

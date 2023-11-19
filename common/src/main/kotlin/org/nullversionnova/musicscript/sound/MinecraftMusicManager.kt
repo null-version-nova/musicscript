@@ -36,6 +36,9 @@ object MinecraftMusicManager {
     fun pause() {
         MinecraftClient.getInstance().soundManager.pauseAll()
     }
+    fun resume() {
+        MinecraftClient.getInstance().soundManager.resumeAll()
+    }
     fun isAnythingPlaying() : Boolean {
         for (i in musicRegistry.values) {
             if (MinecraftClient.getInstance().soundManager.isPlaying(i)) { return true }

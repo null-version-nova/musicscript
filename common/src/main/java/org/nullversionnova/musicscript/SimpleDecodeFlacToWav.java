@@ -42,11 +42,6 @@ public final class SimpleDecodeFlacToWav {
         }
     }
 
-    public static void decodeFile(FileInputStream in, OutputStream out) throws DataFormatException, IOException {
-        System.out.println("Check 3");
-        decodeFile(new BitInputStream(new BufferedInputStream(in)),out);
-    }
-
     public static void decodeFile(BitInputStream in, OutputStream out) throws IOException, DataFormatException {
         // Handle FLAC header and metadata blocks
         if (in.readUint(32) != 0x664C6143)
@@ -112,7 +107,6 @@ public final class SimpleDecodeFlacToWav {
 
     private static boolean decodeFrame(BitInputStream in, int numChannels, int sampleDepth, OutputStream out)
             throws IOException, DataFormatException {
-        System.out.println("Check 1");
         // Read a ton of header fields, and ignore most of them
         int temp = in.readByte();
         if (temp == -1)
@@ -156,7 +150,6 @@ public final class SimpleDecodeFlacToWav {
 
         // Decode each channel's subframe, then skip footer
         int[][] samples = new int[numChannels][blockSize];
-        System.out.println("Check 2");
         decodeSubframes(in, sampleDepth, chanAsgn, samples);
         in.alignToByte();
         in.readUint(16);
@@ -176,7 +169,6 @@ public final class SimpleDecodeFlacToWav {
 
     private static void decodeSubframes(BitInputStream in, int sampleDepth, int chanAsgn, int[][] result)
             throws IOException, DataFormatException {
-        System.out.println("Check 3");
         int blockSize = result[0].length;
         long[][] subframes = new long[result.length][blockSize];
         if (0 <= chanAsgn && chanAsgn <= 7) {
@@ -210,7 +202,6 @@ public final class SimpleDecodeFlacToWav {
 
     private static void decodeSubframe(BitInputStream in, int sampleDepth, long[] result)
             throws IOException, DataFormatException {
-        System.out.println("So many of these!");
         in.readUint(1);
         int type = in.readUint(6);
         int shift = in.readUint(1);

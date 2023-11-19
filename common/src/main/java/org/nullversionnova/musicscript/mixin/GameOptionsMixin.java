@@ -20,7 +20,7 @@ public class GameOptionsMixin {
     private void setSoundCategoryVolume(SoundCategory soundCategory, float f, CallbackInfo info) {
         GameOptions options = MinecraftClient.getInstance().options;
         if (options.getSoundVolume(SoundCategory.MUSIC) == 0 && !SoundManager.isPaused()) {
-            RawSoundEngine.stopAll();
+            RawSoundEngine.stopSounds();
         }
         RawSoundEngine.setVolume(options.getSoundVolume(SoundCategory.MUSIC) * options.getSoundVolume(SoundCategory.MASTER));
     }
