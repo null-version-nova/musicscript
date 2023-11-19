@@ -1,14 +1,15 @@
-package org.nullversionnova.musicscript
+package org.nullversionnova.musicscript.script
 
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.util.registry.Registry
+import org.nullversionnova.musicscript.MusicScript
+import org.nullversionnova.musicscript.sound.SoundManager
 import org.python.core.PyDictionary
 import org.python.util.PythonInterpreter
 import java.io.File
 
-
-object PythonScriptManager {
-    fun run(scriptName: String, player: PlayerEntity) {
+class ScriptThread(val scriptName: String, val player: PlayerEntity) : Thread() {
+    override fun run() {
         val interpreter = PythonInterpreter()
         val script = try {
             File("${MusicScript.properties["script_path"]}/$scriptName").readText()
@@ -18,15 +19,15 @@ object PythonScriptManager {
         interpreter.set("data", setData(player))
         interpreter.exec(script)
         val commands = try {
-             interpreter.get("output").toString().split(';')
+            interpreter.get("output").toString().split(';')
         } catch (e: Exception) {
             return
         }
         for (i in commands) {
-            execute(i.trim())
+            execute(i.trim(), player)
         }
     }
-    private fun execute(command : String) : Boolean {
+    private fun execute(command : String, player: PlayerEntity) : Boolean {
         println(command)
         val components = command.split(' ')
         when (components[0]) {
@@ -57,6 +58,7 @@ object PythonScriptManager {
         data["x"] = player.x // Float
         data["y"] = player.y // Float
         data["z"] = player.z // Float
+        data["is_in_water"] = player.isSubmergedInWater
 
         // World properties //
         data["biome"] = player.world.registryManager.get(Registry.BIOME_KEY).getId(player.world.getBiome(player.blockPos).value()).toString()

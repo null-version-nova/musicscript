@@ -2,6 +2,7 @@ package org.nullversionnova.musicscript
 
 import dev.architectury.platform.Platform
 import org.nullversionnova.musicscript.MusicScriptExpectPlatform.getConfigDirectory
+import org.nullversionnova.musicscript.script.Events
 import java.io.File
 import java.util.Properties
 import javax.sound.sampled.AudioSystem
@@ -9,12 +10,12 @@ import javax.sound.sampled.Clip
 
 object MusicScript {
     const val MOD_ID = "musicscript"
-    val DATA_PATH = "${Platform.getConfigFolder()}/${MOD_ID}"
+    val DATA_PATH = "${Platform.getGameFolder()}/${MOD_ID}"
     val properties = Properties()
 
     fun init() {
         println("CONFIG DIR: ${getConfigDirectory().toAbsolutePath().normalize()}")
-        val propertyFile = File("$DATA_PATH/musicscript.properties")
+        val propertyFile = File("${Platform.getConfigFolder()}/$MOD_ID/musicscript.properties")
         if (!File(DATA_PATH).isDirectory) { File(DATA_PATH).mkdir() }
         if (propertyFile.exists()) {
             properties.load(propertyFile.inputStream())

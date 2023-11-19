@@ -5,8 +5,8 @@
   "minVersion": "0.8",
   "client": [
     "GameOptionsMixin",
-    "MusicTrackerMixin",
-    "MinecraftClientMixin"
+    "MinecraftClientMixin",
+    "MusicTrackerMixin"
   ],
   "mixins": [
   ],

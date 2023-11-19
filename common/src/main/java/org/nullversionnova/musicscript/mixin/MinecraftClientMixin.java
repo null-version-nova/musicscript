@@ -1,7 +1,7 @@
 package org.nullversionnova.musicscript.mixin;
 
 import net.minecraft.client.MinecraftClient;
-import org.nullversionnova.musicscript.SoundManager;
+import org.nullversionnova.musicscript.sound.SoundManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
