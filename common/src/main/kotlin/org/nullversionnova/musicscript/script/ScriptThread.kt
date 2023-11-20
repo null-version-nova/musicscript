@@ -6,16 +6,13 @@ import org.nullversionnova.musicscript.sound.SoundManager
 import org.python.core.PyDictionary
 import org.python.util.PythonInterpreter
 
-class ScriptThread(val interpreter: PythonInterpreter, val scriptName: String, val player: PlayerEntity) : Thread() {
+class ScriptThread(private val interpreter: PythonInterpreter, private val scriptName: String, private val player: PlayerEntity) : Thread() {
     override fun run() {
         interpreter.set("data",setData(player))
-        println("Does it get here?")
         val commands = try {
-            println("Here?")
             interpreter.exec("output = $scriptName(data)")
             interpreter.get("output").toString().split(';')
         } catch (e: Exception) {
-            println("Error?")
             return
         }
         for (i in commands) {
@@ -28,7 +25,7 @@ class ScriptThread(val interpreter: PythonInterpreter, val scriptName: String, v
         when (components[0]) {
             "play" -> {
                 return if (!SoundManager.isAnythingPlaying()) {
-                    SoundManager.playSound(components[(1 until components.size).random()])
+                    SoundManager.playSound(components[(1..components.size).random()])
                     true
                 } else {
                     false

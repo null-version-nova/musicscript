@@ -12,13 +12,10 @@ object SoundManager {
     }
     @JvmStatic
     fun playSound(sound: String) : Boolean {
-        if (sound.contains('*')) {
-            sound.replace('*',' ')
-        }
         return if (sound.contains(':')) {
             MinecraftMusicManager.playSound(Identifier(sound))
         } else {
-            ExternalSoundManager.playSound(File("${MusicScript.properties["song_path"]}/$sound"))
+            ExternalSoundManager.playSound(File("${MusicScript.properties["song_path"]}/${sound.replace('*',' ')}"))
         }
     }
     @JvmStatic

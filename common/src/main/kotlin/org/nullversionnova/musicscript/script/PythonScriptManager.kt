@@ -8,11 +8,23 @@ import java.io.File
 
 object PythonScriptManager {
     val interpreter = PythonInterpreter()
+    var enabled = false
     fun init() {
-        interpreter.exec(File("${MusicScript.DATA_PATH}/musicscript.py").readText())
+        enabled = try {
+            interpreter.exec(File("${MusicScript.DATA_PATH}/musicscript.py").readText())
+            true
+        } catch (e: Exception) {
+            println(e)
+            false
+        }
+    }
+    fun close() {
+        interpreter.cleanup()
     }
     @JvmStatic
     fun run(scriptName: String, player: PlayerEntity) {
-        ScriptThread(interpreter, scriptName, player).start()
+        if (enabled) {
+            ScriptThread(interpreter, scriptName, player).start()
+        }
     }
 }

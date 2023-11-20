@@ -12,7 +12,7 @@ import net.minecraft.world.World
 import org.nullversionnova.musicscript.sound.SoundManager
 
 object Events {
-    var ticks = 200
+    var ticks = 50
     private var isPlayerSubmerged = false
     fun init() {
         PlayerEvent.CHANGE_DIMENSION.register { serverPlayerEntity: ServerPlayerEntity, _: RegistryKey<World>, _: RegistryKey<World> ->
@@ -43,15 +43,17 @@ object Events {
         }
         ClientPlayerEvent.CLIENT_PLAYER_JOIN.register {
             isPlayerSubmerged = it.isSubmergedInWater
+            PythonScriptManager.init()
         }
         ClientPlayerEvent.CLIENT_PLAYER_QUIT.register {
+            PythonScriptManager.close()
             SoundManager.stopSounds()
-            ticks = 200
+            ticks = 50
         }
     }
     fun playSong(player: ClientPlayerEntity) {
         if (ticks == 0) {
-            ticks = 2000
+            ticks = 50
             PythonScriptManager.run("play_song", player)
         } else if (!SoundManager.isPaused()) {
             decrement()
@@ -64,7 +66,7 @@ object Events {
     }
     fun playMenu() {
         if (ticks == 0 && !SoundManager.isAnythingPlaying()) {
-            ticks = 200
+            ticks = 50
             SoundManager.playSound("minecraft:music.menu")
         } else {
             decrement()
