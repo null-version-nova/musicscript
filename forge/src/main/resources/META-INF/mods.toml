@@ -6,10 +6,10 @@ license = "MIT License"
 [[mods]]
 modId = "${mod_id}"
 version = "${version}"
-displayName = "nova's musicscript"
+displayName = "nova's Music Script"
 authors = "null-version_nova"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+"Allows the user to play songs in Minecraft controlled by a python script."
 '''
 #logoFile = ""
 
