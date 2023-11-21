@@ -1,4 +1,4 @@
-package org.nullversionnova.musicscript;
+package io.nayuki.flac;
 /*
  * Simple FLAC decoder (Java)
  *

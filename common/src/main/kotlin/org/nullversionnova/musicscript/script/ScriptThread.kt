@@ -2,6 +2,7 @@ package org.nullversionnova.musicscript.script
 
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.util.registry.Registry
+import org.nullversionnova.musicscript.Events
 import org.nullversionnova.musicscript.sound.SoundManager
 import org.python.core.PyDictionary
 import org.python.util.PythonInterpreter

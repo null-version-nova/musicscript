@@ -12,6 +12,6 @@ object MusicScriptForge {
         // Submit our event bus to let architectury register our content on the right time
         EventBuses.registerModEventBus(MusicScript.MOD_ID, MOD_BUS)
         MusicScript.init()
-        PythonScriptManager.init()
+        PythonScriptManager.initWorld()
     }
 }

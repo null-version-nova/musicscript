@@ -1,7 +1,7 @@
 package org.nullversionnova.musicscript.sound
 
+import io.nayuki.flac.SimpleDecodeFlacToWav
 import org.nullversionnova.musicscript.MusicScript
-import org.nullversionnova.musicscript.SimpleDecodeFlacToWav
 import java.io.BufferedInputStream
 import java.io.File
 

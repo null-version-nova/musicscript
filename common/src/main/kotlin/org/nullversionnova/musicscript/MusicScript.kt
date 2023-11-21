@@ -1,7 +1,6 @@
 package org.nullversionnova.musicscript
 
 import dev.architectury.platform.Platform
-import org.nullversionnova.musicscript.script.Events
 import org.python.util.PythonInterpreter
 import java.io.File
 import java.util.*

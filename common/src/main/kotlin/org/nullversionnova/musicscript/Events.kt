@@ -1,4 +1,4 @@
-package org.nullversionnova.musicscript.script
+package org.nullversionnova.musicscript
 
 import dev.architectury.event.events.client.ClientPlayerEvent
 import dev.architectury.event.events.client.ClientTickEvent
@@ -9,6 +9,7 @@ import net.minecraft.client.sound.MusicType
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.registry.RegistryKey
 import net.minecraft.world.World
+import org.nullversionnova.musicscript.script.PythonScriptManager
 import org.nullversionnova.musicscript.sound.SoundManager
 
 object Events {
@@ -43,7 +44,7 @@ object Events {
         }
         ClientPlayerEvent.CLIENT_PLAYER_JOIN.register {
             isPlayerSubmerged = it.isSubmergedInWater
-            PythonScriptManager.init()
+            PythonScriptManager.initWorld()
         }
         ClientPlayerEvent.CLIENT_PLAYER_QUIT.register {
             PythonScriptManager.close()
