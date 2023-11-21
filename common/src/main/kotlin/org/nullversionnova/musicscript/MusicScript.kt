@@ -12,7 +12,7 @@ object MusicScript {
     val properties = Properties()
 
     fun init() {
-        PythonInterpreter.initialize(System.getProperties(),System.getProperties(), arrayOf(String()))
+         PythonInterpreter.initialize(null,null, null)
         val propertyFile = File("${Platform.getConfigFolder()}/$MOD_ID/musicscript.properties")
         if (!File(DATA_PATH).isDirectory) { File(DATA_PATH).mkdir() }
         if (propertyFile.exists()) {
