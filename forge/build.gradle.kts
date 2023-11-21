@@ -49,6 +49,7 @@ dependencies {
     // Kotlin For Forge
     implementation("thedarkcolour:kotlinforforge:${rootProject.property("kotlin_for_forge_version")}")
     forgeRuntimeLibrary("org.python:jython-slim:2.7.3")
+    forgeRuntimeLibrary("javazoom:jlayer:1.0.1")
 }
 
 tasks.processResources {

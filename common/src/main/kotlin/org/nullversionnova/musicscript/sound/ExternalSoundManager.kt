@@ -24,6 +24,7 @@ object ExternalSoundManager {
             }
             "mp3" -> { // Not certain if this will get implemented.
                 val converter = Converter()
+                File("${MusicScript.DATA_PATH}/temp/mp3").mkdirs()
                 val dummyfile = File("${MusicScript.DATA_PATH}/temp/mp3/${sound.nameWithoutExtension}.wav")
                 if (dummyfile.createNewFile()) {
                     converter.convert(sound.absolutePath,dummyfile.absolutePath)

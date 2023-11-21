@@ -26,7 +26,7 @@ class ScriptThread(private val interpreter: PythonInterpreter, private val scrip
         when (components[0]) {
             "play" -> {
                 return if (!SoundManager.isAnythingPlaying()) {
-                    SoundManager.playSound(components[(1..components.size).random()])
+                    SoundManager.playSound(components[(1 until components.size).random()])
                     true
                 } else {
                     false
