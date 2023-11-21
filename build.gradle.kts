@@ -40,20 +40,10 @@ allprojects {
     version = rootProject.property("mod_version").toString()
     group = rootProject.property("maven_group").toString()
 
-    repositories {
-        // Add repositories to retrieve artifacts from in here.
-        // You should only use this when depending on other mods because
-        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-        // for more information about repositories.
-
-    }
-
-
-
     dependencies {
         api("org.jetbrains.kotlin:kotlin-stdlib")
         implementation("org.python:jython-standalone:2.7.3")
+        implementation("javazoom:jlayer:1.0.1")
     }
 
     tasks.withType<JavaCompile> {

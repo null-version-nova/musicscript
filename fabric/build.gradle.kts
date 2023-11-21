@@ -49,6 +49,7 @@ dependencies {
     // Fabric Kotlin
     modImplementation("net.fabricmc:fabric-language-kotlin:${rootProject.property("fabric_kotlin_version")}")
     include("org.python:jython-standalone:2.7.3")
+    include("javazoom:jlayer:1.0.1")
 }
 
 tasks.processResources {
