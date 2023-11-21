@@ -6,13 +6,12 @@ import org.python.util.PythonInterpreter
 import java.io.File
 import java.util.Properties
 
-
 object PythonScriptManager {
-    val interpreter : PythonInterpreter
+    private val interpreter : PythonInterpreter
     var enabled = false
     init {
         val postProperties = Properties()
-        postProperties["python.home"] = "./Lib"
+        postProperties["python.home"] = "./lib"
         postProperties["python.import.site"] = "false"
         PythonInterpreter.initialize(System.getProperties(),postProperties, arrayOf<String>())
         interpreter = PythonInterpreter()

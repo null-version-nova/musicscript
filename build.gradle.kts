@@ -1,5 +1,3 @@
-import net.fabricmc.loom.api.LoomGradleExtensionAPI
-
 plugins {
     java
     kotlin("jvm") version "1.8.22"
@@ -15,16 +13,8 @@ architectury {
 subprojects {
     apply(plugin = "dev.architectury.loom")
 
-    val loom = project.extensions.getByName<LoomGradleExtensionAPI>("loom")
-
-
     dependencies {
         "minecraft"("com.mojang:minecraft:${project.property("minecraft_version")}")
-        // The following line declares the mojmap mappings, you may use other mappings as well
-//        "mappings"(
-//            loom.officialMojangMappings()
-//        )
-        // The following line declares the yarn mappings you may select this one as well.
          "mappings"("net.fabricmc:yarn:1.18.2+build.3:v2")
     }
 }
@@ -42,7 +32,7 @@ allprojects {
 
     dependencies {
         api("org.jetbrains.kotlin:kotlin-stdlib")
-        implementation("org.python:jython-standalone:2.7.3")
+        implementation("org.python:jython-slim:2.7.3")
         implementation("javazoom:jlayer:1.0.1")
     }
 
