@@ -20,7 +20,7 @@ subprojects {
 }
 
 allprojects {
-    apply(plugin = "java")
+    apply(plugin = "java") 
     apply(plugin = "kotlin")
     apply(plugin = "architectury-plugin")
     apply(plugin = "maven-publish")
@@ -34,6 +34,7 @@ allprojects {
         api("org.jetbrains.kotlin:kotlin-stdlib")
         implementation("org.python:jython-slim:2.7.3")
         implementation("javazoom:jlayer:1.0.1")
+
     }
 
     tasks.withType<JavaCompile> {

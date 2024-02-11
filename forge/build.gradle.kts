@@ -48,8 +48,17 @@ dependencies {
 
     // Kotlin For Forge
     implementation("thedarkcolour:kotlinforforge:${rootProject.property("kotlin_for_forge_version")}")
+
+    // External Libraries
     forgeRuntimeLibrary("org.python:jython-slim:2.7.3")
     forgeRuntimeLibrary("javazoom:jlayer:1.0.1")
+
+    // A million includes...
+    include("javazoom:jlayer:1.0.1")
+    include("org.python:jython-slim:2.7.3")
+    include("com.github.jnr:jnr-posix:3.1.15")
+    include("com.github.jnr:jnr-constants:0.10.3")
+    include("com.github.jnr:jnr-ffi:2.2.12")
 }
 
 tasks.processResources {
