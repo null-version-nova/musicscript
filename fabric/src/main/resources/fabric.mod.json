@@ -16,7 +16,7 @@
     "main": [
       {
         "adapter": "kotlin",
-        "value": "org.nullversionnova.musicscript.fabric.MusicScriptFabric"
+        "value": "nullversionnova.musicscript.fabric.MusicScriptFabric"
       }
     ]
   },

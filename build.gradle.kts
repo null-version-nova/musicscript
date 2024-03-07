@@ -2,7 +2,7 @@ plugins {
     java
     kotlin("jvm") version "1.8.22"
     id("architectury-plugin") version "3.4-SNAPSHOT"
-    id("dev.architectury.loom") version "1.2-SNAPSHOT" apply false
+    id("dev.architectury.loom") version "1.4-SNAPSHOT" apply false
     id("com.github.johnrengelman.shadow") version "8.1.1" apply false
 }
 
@@ -15,7 +15,9 @@ subprojects {
 
     dependencies {
         "minecraft"("com.mojang:minecraft:${project.property("minecraft_version")}")
-         "mappings"("net.fabricmc:yarn:1.18.2+build.3:v2")
+        "mappings"("net.fabricmc:yarn:1.18.2+build.3:v2")
+
+
     }
 }
 
@@ -34,7 +36,6 @@ allprojects {
         api("org.jetbrains.kotlin:kotlin-stdlib")
         implementation("org.python:jython-slim:2.7.3")
         implementation("javazoom:jlayer:1.0.1")
-
     }
 
     tasks.withType<JavaCompile> {

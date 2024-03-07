@@ -7,10 +7,8 @@ pluginManagement {
     }
 }
 
-include("common") // Including all of these so my IDE doesn't start tossing errors at me. I'm maintaining the full Architectury structure in case someone wants to Quilt and Forge functional.
-include("fabric-like")
+include("common")
 include("fabric")
-include("quilt")
 include("forge")
 
 rootProject.name = "musicscript"

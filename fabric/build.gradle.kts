@@ -39,12 +39,6 @@ dependencies {
     shadowCommon(project(":common", "transformProductionFabric")){
         isTransitive = false
     }
-    common(project(":fabric-like", "namedElements")){
-        isTransitive = false
-    }
-    shadowCommon(project(":fabric-like", "transformProductionFabric")) {
-        isTransitive = false
-    }
 
     // Fabric Kotlin
     modImplementation("net.fabricmc:fabric-language-kotlin:${rootProject.property("fabric_kotlin_version")}")
