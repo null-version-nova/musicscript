@@ -6,12 +6,12 @@ import nullversionnova.musicscript.MusicScript
 import java.io.BufferedInputStream
 import java.io.File
 
-object ExternalSoundManager {
-    @JvmStatic
-    fun playSound(sound: File) : Boolean {
+class ExternalSoundManager {
+    val rawSoundEngine = RawSoundEngine()
+    fun playSound(sound: File, songVolume: Float = 1.0f, loop : Boolean = false, start: () -> Long = {0}) : Boolean {
         return when (sound.extension) {
             "wav", "aiff", "au" -> {
-                RawSoundEngine.start(sound)
+                rawSoundEngine.start(sound,sound.inputStream(),songVolume,loop,start)
             }
             "flac" -> {
                 File("${MusicScript.DATA_PATH}/temp/flac").mkdirs()
@@ -20,7 +20,7 @@ object ExternalSoundManager {
                     SimpleDecodeFlacToWav.main(arrayOf(sound.absolutePath, dummyfile.absolutePath))
                 }
                 dummyfile.deleteOnExit()
-                RawSoundEngine.start(sound, BufferedInputStream(dummyfile.inputStream()))
+                rawSoundEngine.start(sound, BufferedInputStream(dummyfile.inputStream()),songVolume,loop,start)
             }
             "mp3" -> { // Not certain if this will get implemented.
                 val converter = Converter()
@@ -30,7 +30,7 @@ object ExternalSoundManager {
                     converter.convert(sound.absolutePath,dummyfile.absolutePath)
                 }
                 dummyfile.deleteOnExit()
-                RawSoundEngine.start(sound, BufferedInputStream(dummyfile.inputStream()))
+                rawSoundEngine.start(sound, BufferedInputStream(dummyfile.inputStream()),songVolume,loop,start)
             }
             "ogg" -> {
                 false
@@ -40,20 +40,16 @@ object ExternalSoundManager {
             }
         }
     }
-    @JvmStatic
     fun stopSounds() {
-        RawSoundEngine.stopSounds()
+        rawSoundEngine.stopSounds()
     }
-    @JvmStatic
     fun pause() {
-        RawSoundEngine.pause()
+        rawSoundEngine.pause()
     }
-    @JvmStatic
     fun resume() {
-        RawSoundEngine.resume()
+        rawSoundEngine.resume()
     }
-    @JvmStatic
     fun isAnythingPlaying() : Boolean {
-        return RawSoundEngine.isAnythingPlaying()
+        return rawSoundEngine.isAnythingPlaying()
     }
 }

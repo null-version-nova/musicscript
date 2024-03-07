@@ -2,12 +2,13 @@ package nullversionnova.musicscript.script
 
 import net.minecraft.entity.player.PlayerEntity
 import nullversionnova.musicscript.MusicScript
+import nullversionnova.musicscript.sound.SoundManager
 import org.python.core.PyClass
 import org.python.util.PythonInterpreter
 import java.io.File
 import java.util.Properties
 
-object PythonScriptManager {
+class PythonScriptManager {
     private val interpreter : PythonInterpreter
     private var dataClass : PyClass? = null
     var enabled = false
@@ -31,10 +32,9 @@ object PythonScriptManager {
     fun close() {
         interpreter.cleanup()
     }
-    @JvmStatic
-    fun run(scriptName: String, player: PlayerEntity) {
+    fun run(scriptName: String, player: PlayerEntity, manager: SoundManager) {
         if (enabled) {
-            ScriptThread(interpreter, scriptName, player, dataClass!!).start()
+            ScriptThread(interpreter, scriptName, player, dataClass!!,manager).start()
         }
     }
 }

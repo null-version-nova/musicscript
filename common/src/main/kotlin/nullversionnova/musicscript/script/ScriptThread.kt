@@ -15,7 +15,13 @@ import org.python.core.PyObject
 import org.python.core.PyString
 import org.python.util.PythonInterpreter
 
-class ScriptThread(private val interpreter: PythonInterpreter, private val scriptName: String, private val player: PlayerEntity, private val data: PyClass) : Thread() {
+class ScriptThread(
+    private val interpreter: PythonInterpreter,
+    private val scriptName: String,
+    private val player: PlayerEntity,
+    private val data: PyClass,
+    private val manager: SoundManager
+) : Thread() {
     override fun run() {
         interpreter.set("data",setData(player,data))
         val commands = try {
@@ -33,20 +39,26 @@ class ScriptThread(private val interpreter: PythonInterpreter, private val scrip
         val components = command.split(' ')
         when (components[0]) {
             "play" -> {
-                return if (!SoundManager.isAnythingPlaying()) {
-                    SoundManager.playSound(components[(1 until components.size).random()])
+                return if (!manager.isAnythingPlaying()) {
+                    manager.playSound(components[(1 until components.size).random()])
                     true
                 } else {
                     false
                 }
             }
-            "playstem" -> {
-                val song = components[1]
-                val stem = components[2]
+            "enablestem" -> {
+                (1 until components.size).forEach {
+                    manager.complexSongManager.enableStem(components[it])
+                }
             }
-            "stop" -> SoundManager.stopSounds()
-            "pause" -> SoundManager.pause()
-            "resume" -> SoundManager.resume()
+            "disablestem" -> {
+                (1 until components.size).forEach {
+                    manager.complexSongManager.disableStem(components[it])
+                }
+            }
+            "stop" -> manager.stopSounds()
+            "pause" -> manager.pause()
+            "resume" -> manager.resume()
             "delay" -> {
                 if (components.size == 2) {
                     Events.ticks = components[1].toInt()

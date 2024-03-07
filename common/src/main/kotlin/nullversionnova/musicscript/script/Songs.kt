@@ -14,7 +14,6 @@ object Songs {
         val gson = Gson()
         val builder = GsonBuilder()
         builder.registerTypeAdapter(Song::class.java,Song.SongDeserializer())
-        builder.registerTypeAdapter(Stem::class.java,Stem.StemDeserializer())
         val obj = gson.fromJson(file,JsonArray::class.java)
         for (i in obj) {
             songs.add(gson.fromJson(i,Song::class.java))

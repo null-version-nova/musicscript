@@ -5,44 +5,46 @@ import nullversionnova.musicscript.MusicScript
 import nullversionnova.musicscript.script.Songs
 import java.io.File
 
-object SoundManager {
+class SoundManager {
+    val externalSoundManager = ExternalSoundManager()
+    val complexSongManager = ComplexSongManager()
     private var isPaused = false
-    @JvmStatic
     fun isPaused() : Boolean {
         return isPaused
     }
-    @JvmStatic
     fun playSound(sound: String) : Boolean {
         return if (sound.contains(':')) {
             MinecraftMusicManager.playSound(Identifier(sound))
         } else if (Songs.hasSong(sound)) {
-            ExternalSoundManager.playSound(File("${MusicScript.properties["song_path"]}/${Songs.getSong(sound)!!.stems["main"]!!.path}"))
+            complexSongManager.playSong(sound)
+            if (Songs.getSong(sound)!!["main"] != null) {
+                complexSongManager.enableStem("main")
+                true
+            } else {
+                true
+            }
         } else {
-            ExternalSoundManager.playSound(File("${MusicScript.properties["song_path"]}/$sound"))
+            externalSoundManager.playSound(File("${MusicScript.properties["song_path"]}/$sound"))
         }
     }
-    fun playStem(song: String, stem: String) : Boolean {
-        return false
-    }
-    @JvmStatic
     fun stopSounds() {
-        ExternalSoundManager.stopSounds()
+        externalSoundManager.stopSounds()
+        complexSongManager.stop()
         MinecraftMusicManager.stopSounds()
     }
-    @JvmStatic
     fun pause() {
         isPaused = true
-        ExternalSoundManager.pause()
+        complexSongManager.pause()
+        externalSoundManager.pause()
         MinecraftMusicManager.pause()
     }
-    @JvmStatic
     fun resume() {
         isPaused = false
-        ExternalSoundManager.resume()
+        complexSongManager.resume()
+        externalSoundManager.resume()
         MinecraftMusicManager.resume()
     }
-    @JvmStatic
     fun isAnythingPlaying() : Boolean {
-        return ExternalSoundManager.isAnythingPlaying() || MinecraftMusicManager.isAnythingPlaying()
+        return externalSoundManager.isAnythingPlaying() || MinecraftMusicManager.isAnythingPlaying() || complexSongManager.isPlaying
     }
 }
